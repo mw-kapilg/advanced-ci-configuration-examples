@@ -20,7 +20,7 @@ jobs:
     parameters:
       os:
         type: executor
-    executor: << parameters.os >>
+    executor: macos
     # Use parallelism to split tests across multiple containers
     parallelism: 2
     steps:
