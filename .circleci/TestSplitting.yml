@@ -10,7 +10,7 @@ executors:
       image: default
   macos:
     macos:
-      xcode: 15.4.0
+      xcode: 26.2.0
   windows:
     win/default
 
@@ -20,6 +20,7 @@ jobs:
       os:
         type: executor
     executor: << parameters.os >>
+    # Use parallelism to split tests across multiple containers
     parallelism: 2
     steps:
       - checkout
@@ -30,10 +31,11 @@ jobs:
             MATLAB_Compiler_SDK
             MATLAB_Test
       
-      # Builds Python package from MATLAB function
+      # Builds mex file and Python package from MATLAB function
       - matlab/run-build:
           tasks: mex buildPythonPackage
       
+      # Run MATLAB tests, splitting them across parallel containers
       - matlab/run-tests:
           select-by-name: $(circleci tests glob "tests/**/*.m" | circleci tests split | awk -F'[\\\\/.]' '{print $(NF-1) "/*"}')
 
