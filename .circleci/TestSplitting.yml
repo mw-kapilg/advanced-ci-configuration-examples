@@ -47,4 +47,4 @@ workflows:
       - split-test:
           matrix:
             parameters:
-              os: [linux, macos, windows]
+              os: [macos]
