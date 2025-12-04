@@ -33,7 +33,7 @@ jobs:
       - matlab/run-build:
           tasks: mex buildPythonPackage
       
-      - - matlab/run-tests:
+      - matlab/run-tests:
           select-by-name: $(circleci tests glob "tests/**/*.m" | circleci tests split | awk -F'[\\\\/.]' '{print $(NF-1) "/*"}')
 
 workflows:
