@@ -20,6 +20,7 @@ jobs:
       os:
         type: executor
     executor: << parameters.os >>
+    parallelism: 2
     steps:
       - checkout
       
