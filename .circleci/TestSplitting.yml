@@ -22,7 +22,7 @@ jobs:
         type: executor
     executor: << parameters.os >>
     # Use parallelism to split tests across multiple containers
-    # parallelism: 2
+    parallelism: 2
     steps:
       - checkout
       
