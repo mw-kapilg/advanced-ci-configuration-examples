@@ -30,6 +30,7 @@ jobs:
           products: >
             MATLAB_Compiler_SDK
             MATLAB_Test
+          cache: true
       
       # Builds mex file and Python package from MATLAB function
       - matlab/run-build:
