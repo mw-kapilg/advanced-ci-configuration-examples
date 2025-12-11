@@ -11,7 +11,6 @@ executors:
   macos:
     macos:
       xcode: 16.4.0
-    resource_class: macos.m1.medium.gen1
   windows:
     win/default
 
@@ -20,7 +19,7 @@ jobs:
     parameters:
       os:
         type: executor
-    executor: macos
+    executor: << parameters.os >>
     # Use parallelism to split tests across multiple containers
     parallelism: 2
     steps:
@@ -47,4 +46,4 @@ workflows:
       - split-test:
           matrix:
             parameters:
-              os: [macos]
+              os: [linux, macos, windows]
