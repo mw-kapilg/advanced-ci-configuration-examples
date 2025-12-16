@@ -30,7 +30,6 @@ jobs:
           products: >
             MATLAB_Compiler_SDK
             MATLAB_Test
-          cache: true
       
       # Builds mex file and Python package from MATLAB function
       - matlab/run-build:
@@ -38,7 +37,12 @@ jobs:
       
       # Run MATLAB tests, splitting them across parallel containers
       - matlab/run-tests:
-          select-by-name: $(circleci tests glob "tests/**/*.m" | circleci tests split | awk -F'[\\\\/.]' '{print $(NF-1) "/*"}')
+          test-results-junit: test-results/results.xml
+          # select-by-name: $(circleci tests glob "tests/**/*.m" | circleci tests split --split-by=timings --timings-type=name | awk -F'[\\\\/.]' '{print $(NF-1) "/*"}')
+          select-by-name: $(circleci tests glob "tests/**/*.m" | awk -F'[\\\\/.]' '{print $(NF-1)}' | circleci tests split --split-by=timings --timings-type=classname | awk '{print $0 "/*"}')
+
+      - store_test_results:
+          path: test-results/results.xml
 
 workflows:
   test-splitting-build:
