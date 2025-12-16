@@ -47,7 +47,7 @@ jobs:
       - name: Compile and Verify Python Package
         uses: matlab-actions/run-build@v2
         with:
-          tasks: mex
+          tasks: mex2
 
       - uses: matlab-actions/run-tests@v2
         with:
