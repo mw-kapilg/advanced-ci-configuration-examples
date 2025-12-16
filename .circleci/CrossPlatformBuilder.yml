@@ -34,7 +34,7 @@ jobs:
       
       # Builds Python package from MATLAB function and verifies functionality through equivalence tests
       - matlab/run-build:
-          tasks: mex2
+          tasks: mex
 
       - matlab/run-tests:
           source-folder: src
