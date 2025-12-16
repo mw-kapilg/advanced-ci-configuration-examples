@@ -42,7 +42,7 @@ jobs:
           select-by-name: $(circleci tests glob "tests/**/*.m" | awk -F'[\\\\/.]' '{print $(NF-1)}' | circleci tests split --split-by=timings --timings-type=classname | awk '{print $0 "/*"}')
 
       - store_test_results:
-          path: test-results/results.xml
+          path: test-results
 
 workflows:
   test-splitting-build:
