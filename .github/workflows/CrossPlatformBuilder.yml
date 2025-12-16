@@ -47,7 +47,11 @@ jobs:
       - name: Compile and Verify Python Package
         uses: matlab-actions/run-build@v2
         with:
-          tasks: equivalenceTest
+          tasks: mex
+
+      - uses: matlab-actions/run-tests@v2
+        with:
+          source-folder: src
 
       # Uploads the built Python package as an artifact to GitHub
       - name: Upload Python package artifact
