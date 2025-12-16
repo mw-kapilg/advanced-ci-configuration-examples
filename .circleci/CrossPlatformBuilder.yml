@@ -34,7 +34,10 @@ jobs:
       
       # Builds Python package from MATLAB function and verifies functionality through equivalence tests
       - matlab/run-build:
-          tasks: equivalenceTest
+          tasks: mex2
+
+      - matlab/run-tests:
+          source-folder: src
       
       # Stores the built Python package as an artifact
       - store_artifacts:
